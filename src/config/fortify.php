@@ -74,7 +74,13 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    'home' => '/attendance',
+    'features' => [
+    Features::registration(),
+    Features::resetPasswords(),
+    // メール認証（応用要件）を実装する場合は以下を追加
+    // Features::emailVerification(),
+    ],
 
     /*
     |--------------------------------------------------------------------------
