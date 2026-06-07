@@ -1,0 +1,65 @@
+/* ============================================
+   認証画面スタイル
+   ============================================ */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 40px 20px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 40px;
+    border-radius: 4px;
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #000;
+}
+
+.auth-form {
+    margin-bottom: 20px;
+}
+
+.auth-link {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.auth-link a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-link a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* ============================================
+   レスポンシブ対応（PC 1400-1540px）
+   ============================================ */
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .auth-box {
+        max-width: 380px;
+        padding: 35px;
+    }
+
+    .auth-title {
+        font-size: 22px;
+    }
+}

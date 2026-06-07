@@ -1,0 +1,384 @@
+/* ============================================
+   共通スタイル
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* ============================================
+   ヘッダー
+   ============================================ */
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+    color: #000;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.btn-logout {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #333;
+}
+
+/* ============================================
+   フッター
+   ============================================ */
+
+.footer {
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 12px;
+    color: #666;
+}
+
+/* ============================================
+   メインコンテンツ
+   ============================================ */
+
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px);
+}
+
+/* ============================================
+   フォーム
+   ============================================ */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.form-input--error {
+    border-color: #d32f2f;
+    background-color: #ffebee;
+}
+
+.form-error {
+    display: block;
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.form-error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* ============================================
+   ボタン
+   ============================================ */
+
+.btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-family: "Noto Sans JP", sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.btn-secondary {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background-color: #e8e8e8;
+}
+
+.btn-link {
+    color: #000;
+    text-decoration: underline;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-link:hover {
+    color: #333;
+}
+
+/* ============================================
+   アラート
+   ============================================ */
+
+.alert {
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.alert-error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ef5350;
+}
+
+.alert-error ul {
+    margin-left: 20px;
+}
+
+.alert-error li {
+    margin-bottom: 4px;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #66bb6a;
+}
+
+.alert-info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #42a5f5;
+}
+
+/* ============================================
+   テーブル
+   ============================================ */
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead {
+    background-color: #f5f5f5;
+}
+
+th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.table-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px 12px;
+}
+
+/* ============================================
+   ステータスバッジ
+   ============================================ */
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-approved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status-not_started {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.status-working {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.status-on_break {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-finished {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* ============================================
+   レスポンシブ対応（PC 1400-1540px）
+   ============================================ */
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .main-content {
+        padding: 30px 15px;
+    }
+
+    .header-container {
+        padding: 0 15px;
+    }
+
+    .footer-container {
+        padding: 0 15px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+}
