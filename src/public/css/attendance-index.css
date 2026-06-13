@@ -1,0 +1,117 @@
+.attendance-board {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stamp-status {
+    margin-bottom: 8px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+.status-badge--working {
+    background-color: #333;
+    color: #fff;
+}
+
+.status-badge--break {
+    background-color: #888;
+    color: #fff;
+}
+
+.stamp-btn {
+    min-width: 120px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: none;
+}
+
+.stamp-btn--primary {
+    background-color: #333;
+    color: #fff;
+}
+
+.stamp-btn--secondary {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.stamp-btn:hover {
+    opacity: 0.8;
+}
+
+.stamp-done-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.board-date {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.board-time {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.stamp-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stamp-btn {
+    width: 160px;
+    padding: 16px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.stamp-btn:hover:not(:disabled) {
+    opacity: 0.8;
+}
+
+.stamp-btn:disabled {
+    background-color: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.btn-clock-in,
+.btn-clock-out {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-break-start,
+.btn-break-end {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}

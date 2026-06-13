@@ -49,4 +49,24 @@ class Attendance extends Model
             ->exists();
     }
 
+    // 勤務時間を「H:i」形式で返す
+    public function getWorkingHoursAttribute(): string
+    {
+    if (!$this->clock_in_time || !$this->clock_out_time) {
+        return '';
+    }
+
+    $totalMinutes = $this->clock_in_time->diffInMinutes($this->clock_out_time);
+    $workMinutes  = $totalMinutes - ($this->break_minutes ?? 0);
+
+    if ($workMinutes <= 0) {
+        return '';
+    }
+
+    $hours   = intdiv($workMinutes, 60);
+    $minutes = $workMinutes % 60;
+
+    return sprintf('%d:%02d', $hours, $minutes);
+    }
+
 }

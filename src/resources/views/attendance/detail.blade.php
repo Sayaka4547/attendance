@@ -2,7 +2,7 @@
 
 @section('title', '勤怠詳細 - COACHTECH 勤怠管理システム')
 
-@section('page-css')
+@section('css')
   <link rel="stylesheet" href="{{ asset('css/attendance-detail.css') }}" />
 @endsection
 

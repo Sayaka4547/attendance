@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            UserSeeder::class,
+            AttendanceSeeder::class,  // UserSeeder の後に実行（外部キー制約のため）
+        ]);
     }
 }

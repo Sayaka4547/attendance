@@ -134,7 +134,12 @@ class AttendanceController extends Controller
 
         // クエリパラメータで月を切り替え（デフォルトは今月）
         $month = $request->query('month', Carbon::now()->format('Y-m'));
-        $currentMonth = Carbon::parse($month);
+        $currentMonth = Carbon::parse($month)->startOfMonth();
+
+
+        // 前月・翌月のY-m文字列を生成
+        $previousMonth = $currentMonth->copy()->subMonth()->format('Y-m');
+        $nextMonth     = $currentMonth->copy()->addMonth()->format('Y-m');
 
         $attendances = Attendance::where('user_id', $user->id)
             ->whereYear('date', $currentMonth->year)
@@ -142,7 +147,7 @@ class AttendanceController extends Controller
             ->orderBy('date')
             ->get();
 
-        return view('attendance.list', compact('attendances', 'currentMonth'));
+        return view('attendance.list', compact('attendances', 'currentMonth', 'previousMonth', 'nextMonth'));
     }
 
     // 勤怠詳細画面

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/attendance/detail/{id}', [AttendanceController::class, 'requestCorrection'])->name('attendance.requestCorrection');
 
     // 申請一覧画面
-    Route::get('/stamp_correction_request/list', [CorrectionRequestController::class, 'index'])->name('correction-request.index');
+    Route::get('/correction_request/list', [CorrectionRequestController::class, 'index'])->name('correction-request.index');
 });
 
 /*
@@ -53,11 +53,11 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/staff/list', [AdminStaffController::class, 'index'])->name('admin.staff.index');
 
     // 申請一覧画面（管理者）
-    Route::get('/stamp_correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction-request.index');
+    Route::get('/correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction-request.index');
 
     // 修正申請承認画面
-    Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'approve'])->name('admin.correction-request.approve');
-    Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'store'])->name('admin.correction-request.store');
+    Route::get('/correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'approve'])->name('admin.correction-request.approve');
+    Route::post('/correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'store'])->name('admin.correction-request.store');
 });
 
     // 管理者ログイン画面
