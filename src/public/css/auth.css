@@ -1,65 +1,101 @@
-/* ============================================
-   認証画面スタイル
-   ============================================ */
-
 .auth-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 200px);
-    padding: 40px 20px;
+    align-items: flex-start;
+    padding-top: 60px;
+    min-height: calc(70vh);
+    background-color: #fff;
 }
 
-.auth-box {
-    width: 100%;
-    max-width: 400px;
+.auth-card {
     background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 40px;
-    border-radius: 4px;
+    padding: 40px 48px;
+    width: 100%;
+    max-width: 700px;
 }
 
 .auth-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
-    color: #000;
+    margin-bottom: 32px;
 }
 
 .auth-form {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-label {
+    font-size: 13px;
+    color: #333;
+}
+
+.form-input {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 8px 10px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    border-color: #333;
+}
+
+.form-input.is-error {
+    border-color: #e53e3e;
+}
+
+.auth-submit-btn {
+    width: 100%;
+    margin-top: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.auth-submit-btn:hover {
+    opacity: 0.8;
 }
 
 .auth-link {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    text-decoration: none;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #e53e3e;
+    margin-top: 2px;
+}
+
+.verify-text {
     text-align: center;
     font-size: 14px;
-    color: #666;
-}
-
-.auth-link a {
-    color: #000;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.auth-link a:hover {
-    color: #333;
-    text-decoration: underline;
-}
-
-/* ============================================
-   レスポンシブ対応（PC 1400-1540px）
-   ============================================ */
-
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .auth-box {
-        max-width: 380px;
-        padding: 35px;
-    }
-
-    .auth-title {
-        font-size: 22px;
-    }
+    line-height: 1.8;
+    margin-bottom: 24px;
+    color: #555;
 }

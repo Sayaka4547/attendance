@@ -1,114 +1,87 @@
-/* ============================================
-   勤怠詳細画面スタイル
-   ============================================ */
-
-.detail-container {
-    width: 100%;
+.detail-form {
     max-width: 800px;
     margin: 0 auto;
-}
-
-.page-title {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #000;
-}
-
-.detail-card {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    padding: 30px;
+    background-color: #fff;
+    padding: 40px;
     border-radius: 4px;
-    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.detail-info {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.detail-info:last-child {
-    border-bottom: none;
+.detail-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
 .detail-label {
-    font-weight: 600;
-    color: #666;
+    width: 160px;
+    font-weight: bold;
     font-size: 14px;
 }
 
-.detail-value {
-    color: #000;
-    font-size: 14px;
-}
-
-.correction-form-section {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 30px;
-    border-radius: 4px;
-    margin-bottom: 30px;
-}
-
-.section-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #000;
-}
-
-.correction-form {
+.detail-input-group {
+    flex: 1;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 12px;
 }
 
-.modification-list {
-    list-style: none;
-    padding: 0;
-}
-
-.modification-list li {
+.time-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 14px;
-    color: #000;
-    padding: 4px 0;
 }
 
-.page-actions {
+.text-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.action-buttons {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
+    gap: 16px;
+    margin-top: 40px;
 }
 
-/* ============================================
-   レスポンシブ対応（PC 1400-1540px）
-   ============================================ */
+.btn-primary {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
 
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .detail-container {
-        max-width: 750px;
-    }
+.btn-secondary {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
 
-    .page-title {
-        font-size: 26px;
-    }
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
 
-    .detail-card,
-    .correction-form-section {
-        padding: 25px;
-    }
+.status-pending {
+    background-color: #fff3cd;
+    color: #b7791f;
+}
 
-    .detail-info {
-        gap: 15px;
-    }
-
-    .section-title {
-        font-size: 18px;
-    }
+.status-approved {
+    background-color: #c6f6d5;
+    color: #2f855a;
 }

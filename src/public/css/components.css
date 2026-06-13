@@ -1,0 +1,65 @@
+/* ===========================
+   Header (components/header.blade.php)
+=========================== */
+.header {
+    background-color: #000;
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo img {
+    height: 32px;
+    display: block;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-item {
+    color: #fff;
+    font-size: 14px;
+    transition: opacity 0.2s;
+}
+
+.nav-item:hover {
+    opacity: 0.7;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.logout-btn:hover {
+    opacity: 0.7;
+}
+
+/* ===========================
+   Footer (components/footer.blade.php)
+=========================== */
+.footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 12px;
+    margin-top: auto;
+}

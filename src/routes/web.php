@@ -42,15 +42,15 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     // 日次勤怠一覧画面
     Route::get('/attendance/list', [AdminAttendanceController::class, 'index'])->name('admin.attendance.index');
 
+    // スタッフ別月次勤怠一覧画面
+    Route::get('/attendance/staff/{id}', [AdminStaffController::class, 'attendance'])->name('admin.staff.attendance');
+
     // 勤怠詳細画面（管理者)
     Route::get('/attendance/{id}', [AdminAttendanceController::class, 'detail'])->name('admin.attendance.detail');
     Route::post('/attendance/{id}', [AdminAttendanceController::class, 'update'])->name('admin.attendance.update');
 
     // スタッフ一覧画面
     Route::get('/staff/list', [AdminStaffController::class, 'index'])->name('admin.staff.index');
-
-    // スタッフ別月次勤怠一覧画面
-    Route::get('/attendance/staff/{id}', [AdminStaffController::class, 'attendance'])->name('admin.staff.attendance');
 
     // 申請一覧画面（管理者）
     Route::get('/stamp_correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction-request.index');

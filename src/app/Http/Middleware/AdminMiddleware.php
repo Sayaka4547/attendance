@@ -18,7 +18,10 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         // 未ログイン、または管理者でない場合はリダイレクト
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        
+        if (!$user || !$user->isAdmin()) {
             return redirect('/admin/login');
         }
         

@@ -53,7 +53,7 @@ class User extends Authenticatable
     // リレーション
     public function attendances()
     {
-        return $this->this->hasMany(Attendance::class);
+        return $this->hasMany(Attendance::class);
     }
 
     public function correctionRequests()
