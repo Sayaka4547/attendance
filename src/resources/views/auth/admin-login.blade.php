@@ -43,7 +43,7 @@
                 <span class="error-message">{{ $errors->first('login') }}</span>
             @endif
 
-            <button type="submit" class="auth-submit-btn">ログインする</button>
+            <button type="submit" class="auth-submit-btn">管理者ログインする</button>
         </form>
     
         <a href="{{ route('login') }}" class="auth-link">一般ユーザーログインはこちら</a>

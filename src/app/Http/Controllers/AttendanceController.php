@@ -153,13 +153,14 @@ class AttendanceController extends Controller
     // 勤怠詳細画面
     public function detail($id)
     {
-        $attendance = Attendance::with(['breaks', 'correctionRequests'])
+        $attendance = Attendance::with(['user','breaks', 'correctionRequests'])
             ->findOrFail($id);
 
         // 承認待ちの申請確認
-        $hasPending = $attendance->hasPendingRequest();
+        $isPending = $attendance->hasPendingRequest();
+        $breaks    = $attendance->breaks;
 
-        return view('attendance.detail', compact('attendance', 'hasPending'));
+        return view('attendance.detail', compact('attendance', 'isPending', 'breaks'));
     }
 
     // 修正申請

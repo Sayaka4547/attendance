@@ -7,112 +7,113 @@
 @endsection
 
 @section('content')
-  <div class="detail-container">
-    <h1 class="page-title">勤怠詳細</h1>
+  <div class="attendance-detail-container">
+    <h1 class="detail-title">勤怠詳細</h1>
 
     <div class="detail-card">
-      <div class="detail-info">
-        <p class="detail-label">日付</p>
-        <p class="detail-value">{{ $attendance->date->format('Y年m月d日') }}</p>
-      </div>
+      <form id="correction-form" action="{{ route('attendance.requestCorrection', $attendance->id) }}" method="POST">
+        @csrf
 
-      <div class="detail-info">
-        <p class="detail-label">出勤時刻</p>
-        <p class="detail-value">{{ $attendance->clock_in_time?->format('H:i') ?? '-' }}</p>
-      </div>
+        {{-- 名前 --}}
+        <div class="detail-row">
+          <div class="detail-label">名前</div>
+          <div class="detail-value">{{ $attendance->user->name }}</div>
+        </div>
 
-      <div class="detail-info">
-        <p class="detail-label">退勤時刻</p>
-        <p class="detail-value">{{ $attendance->clock_out_time?->format('H:i') ?? '-' }}</p>
-      </div>
+        {{-- 日付 --}}
+        <div class="detail-row">
+          <div class="detail-label">日付</div>
+          <div class="detail-value detail-date">
+            <span>{{ $attendance->date->format('Y年') }}</span>
+            <span>{{ $attendance->date->format('n月j日') }}</span>
+          </div>
+        </div>
 
-      <div class="detail-info">
-        <p class="detail-label">休憩時間</p>
-        <p class="detail-value">{{ $attendance->break_minutes ?? 0 }}分</p>
-      </div>
+        {{-- 出勤・退勤 --}}
+        <div class="detail-row">
+          <div class="detail-label">出勤・退勤</div>
+          <div class="detail-value detail-time-range">
+            @if ($isPending)
+              <span class="time-text">{{ $attendance->clock_in_time?->format('H:i') ?? '' }}</span>
+              <span class="time-separator">〜</span>
+              <span class="time-text">{{ $attendance->clock_out_time?->format('H:i') ?? '' }}</span>
+            @else
+              <input type="time" name="clock_in_time" class="time-input"
+                value="{{ $attendance->clock_in_time?->format('H:i') ?? '' }}">
+              <span class="time-separator">〜</span>
+              <input type="time" name="clock_out_time" class="time-input"
+                value="{{ $attendance->clock_out_time?->format('H:i') ?? '' }}">
+            @endif
+          </div>
+        </div>
 
-      <div class="detail-info">
-        <p class="detail-label">備考</p>
-        <p class="detail-value">{{ $attendance->remarks ?? '-' }}</p>
-      </div>
+        {{-- 休憩（複数） --}}
+        @foreach ($breaks as $index => $break)
+          <div class="detail-row">
+            <div class="detail-label">休憩{{ $index === 0 ? '' : $index + 1 }}</div>
+            <div class="detail-value detail-time-range">
+              @if ($isPending)
+                <span class="time-text">{{ $break->start_time?->format('H:i') ?? '' }}</span>
+                <span class="time-separator">〜</span>
+                <span class="time-text">{{ $break->end_time?->format('H:i') ?? '' }}</span>
+              @else
+                <input type="time" name="breaks[{{ $index }}][start_time]" class="time-input"
+                  value="{{ $break->start_time?->format('H:i') ?? '' }}">
+                <span class="time-separator">〜</span>
+                <input type="time" name="breaks[{{ $index }}][end_time]" class="time-input"
+                  value="{{ $break->end_time?->format('H:i') ?? '' }}">
+              @endif
+            </div>
+          </div>
+        @endforeach
+
+        {{-- 休憩が0件でも空欄行を1行表示 --}}
+        @if ($breaks->isEmpty() && !$isPending)
+          <div class="detail-row">
+            <div class="detail-label">休憩</div>
+            <div class="detail-value detail-time-range">
+              <input type="time" name="breaks[0][start_time]" class="time-input" value="">
+              <span class="time-separator">〜</span>
+              <input type="time" name="breaks[0][end_time]" class="time-input" value="">
+            </div>
+          </div>
+        @endif
+
+        {{-- 追加の空白休憩行（デザインの「休憩2」空欄行） --}}
+        @if (!$isPending)
+          <div class="detail-row">
+            <div class="detail-label">休憩{{ $breaks->count() + 1 }}</div>
+            <div class="detail-value detail-time-range">
+              <input type="time" name="breaks[{{ $breaks->count() }}][start_time]" class="time-input" value="">
+              <span class="time-separator">〜</span>
+              <input type="time" name="breaks[{{ $breaks->count() }}][end_time]" class="time-input" value="">
+            </div>
+          </div>
+        @endif
+
+        {{-- 備考 --}}
+        <div class="detail-row">
+          <div class="detail-label">備考</div>
+          <div class="detail-value">
+            @if ($isPending)
+              <span class="remarks-text">{{ $attendance->remarks ?? '' }}</span>
+            @else
+              <textarea name="remarks" class="remarks-input">{{ $attendance->remarks ?? '' }}</textarea>
+            @endif
+          </div>
+        </div>
+      </form>
     </div>
-
-    @if (!$hasPendingRequest)
-      <div class="correction-form-section">
-        <h2 class="section-title">修正申請</h2>
-
-        <form action="{{ route('correction-request.store') }}" method="POST" class="correction-form">
-          @csrf
-          <input type="hidden" name="attendance_id" value="{{ $attendance->id }}" />
-
-          <div class="form-group">
-            <label for="requested-clock-in" class="form-label">修正出勤時刻</label>
-            <input
-              type="datetime-local"
-              id="requested-clock-in"
-              name="requested_clock_in_time"
-              class="form-input @error('requested_clock_in_time') form-input--error @enderror"
-              value="{{ old('requested_clock_in_time') }}"
-            />
-            @error('requested_clock_in_time')
-              <span class="form-error">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="requested-clock-out" class="form-label">修正退勤時刻</label>
-            <input
-              type="datetime-local"
-              id="requested-clock-out"
-              name="requested_clock_out_time"
-              class="form-input @error('requested_clock_out_time') form-input--error @enderror"
-              value="{{ old('requested_clock_out_time') }}"
-            />
-            @error('requested_clock_out_time')
-              <span class="form-error">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="requested-break" class="form-label">修正休憩時間（分）</label>
-            <input
-              type="number"
-              id="requested-break"
-              name="requested_break_minutes"
-              class="form-input @error('requested_break_minutes') form-input--error @enderror"
-              value="{{ old('requested_break_minutes') }}"
-              min="0"
-            />
-            @error('requested_break_minutes')
-              <span class="form-error">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="requested-remarks" class="form-label">修正理由</label>
-            <textarea
-              id="requested-remarks"
-              name="requested_remarks"
-              class="form-textarea @error('requested_remarks') form-input--error @enderror"
-              rows="4"
-              required
-            >{{ old('requested_remarks') }}</textarea>
-            @error('requested_remarks')
-              <span class="form-error">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <button type="submit" class="btn btn-primary">申請する</button>
-        </form>
+   {{-- 承認待ちメッセージ or 修正ボタン --}}
+    @if ($isPending)
+      <div class="detail-footer">
+        <p class="pending-message">*承認待ちのため修正はできません。</p>
       </div>
     @else
-      <div class="alert alert-info">
-        <p>この勤怠の修正申請は現在承認待ちです。承認されるまで新たな申請はできません。</p>
+      <div class="detail-footer">
+        <button type="submit" form="correction-form" class="btn-submit">修正</button>
       </div>
     @endif
 
-    <div class="page-actions">
-      <a href="{{ route('attendance.list') }}" class="btn btn-secondary">一覧に戻る</a>
-    </div>
   </div>
 @endsection

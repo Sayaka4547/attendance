@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CorrectionRequestController;
 use App\Http\Controllers\Admin\AdminAttendanceController;
@@ -32,6 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/correction_request/list', [CorrectionRequestController::class, 'index'])->name('correction-request.index');
 });
 
+// ログアウト（一般ユーザー）
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login');
+})->name('logout')->middleware('auth');
+
 /*
 |--------------------------------------------------------------------------
 | 管理者向けルート（admin ミドルウェア）
@@ -44,8 +53,9 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     // スタッフ別月次勤怠一覧画面
     Route::get('/attendance/staff/{id}', [AdminStaffController::class, 'attendance'])->name('admin.staff.attendance');
-
-    // 勤怠詳細画面（管理者)
+    Route::get('/attendance/staff/{id}/csv', [AdminStaffController::class, 'csv'])->name('admin.staff.csv');
+    
+    // 勤怠詳細＆修正画面（管理者)
     Route::get('/attendance/{id}', [AdminAttendanceController::class, 'detail'])->name('admin.attendance.detail');
     Route::post('/attendance/{id}', [AdminAttendanceController::class, 'update'])->name('admin.attendance.update');
 
@@ -53,11 +63,12 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/staff/list', [AdminStaffController::class, 'index'])->name('admin.staff.index');
 
     // 申請一覧画面（管理者）
-    Route::get('/correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction-request.index');
+    Route::get('/stamp_correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction-request.index');
 
     // 修正申請承認画面
-    Route::get('/correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'approve'])->name('admin.correction-request.approve');
-    Route::post('/correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'store'])->name('admin.correction-request.store');
+    Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'approve'])->name('admin.correction-request.approve');
+    Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'store'])->name('admin.correction-request.approve.update');
+
 });
 
     // 管理者ログイン画面
@@ -68,3 +79,11 @@ Route::get('/admin/login', function () {
 Route::post('/admin/login', [App\Http\Controllers\Admin\AdminAuthController::class, 'login'])
     ->name('admin.login.post')
     ->middleware('guest');
+
+    // ログアウト（管理者）
+Route::post('/admin/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/admin/login');
+})->name('admin.logout')->middleware('admin');

@@ -1,0 +1,138 @@
+.admin-staff-container {
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.list-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #333;
+    padding-left: 12px;
+    margin-bottom: 24px;
+}
+
+/* 月選択ナビ */
+.month-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 16px;
+}
+
+.month-nav-btn {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.month-nav-btn:hover {
+    text-decoration: underline;
+}
+
+.current-month {
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* date inputは非表示 */
+.date-picker-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+}
+
+.calendar-icon-label {
+    font-size: 18px;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.date-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* テーブル */
+.table-wrapper {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.data-table th {
+    font-weight: normal;
+    color: #333;
+}
+
+.data-table td:first-child,
+.data-table th:first-child {
+    text-align: left;
+    padding-left: 24px;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.detail-link {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
+
+.table-empty {
+    text-align: center;
+    color: #999;
+    padding: 32px;
+}
+
+/* CSV出力ボタン */
+.csv-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.btn-csv {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-csv:hover {
+    background-color: #555;
+}

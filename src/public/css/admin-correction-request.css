@@ -1,0 +1,150 @@
+.admin-request-container {
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.list-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #333;
+    padding-left: 12px;
+    margin-bottom: 24px;
+}
+
+/* タブ */
+.tab-wrapper {
+    display: flex;
+    border-bottom: 2px solid #333;
+    margin-bottom: 16px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-btn.active {
+    color: #333;
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+}
+
+/* テーブル */
+.table-wrapper {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+.data-table th {
+    font-weight: normal;
+    color: #333;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.detail-link {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
+
+.table-empty {
+    text-align: center;
+    color: #999;
+    padding: 32px;
+}
+
+/* 詳細カード（承認画面） */
+.detail-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 14px 20px;
+    font-size: 14px;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    width: 120px;
+    color: #555;
+    flex-shrink: 0;
+}
+
+.detail-value {
+    flex: 1;
+    color: #333;
+}
+
+.time-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tilde {
+    color: #333;
+}
+
+.date-day {
+    margin-left: 16px;
+}
+
+/* 承認ボタン */
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.btn-submit {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #555;
+}

@@ -1,128 +1,77 @@
-/* ============================================
-   申請一覧画面スタイル
-   ============================================ */
-
 .request-list-container {
-    width: 100%;
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 16px;
 }
 
-.page-title {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #000;
+.list-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #333;
+    padding-left: 12px;
+    margin-bottom: 24px;
 }
 
 .tabs {
     display: flex;
-    gap: 12px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #ddd;
+    gap: 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 25px;
 }
 
 .tab-button {
-    padding: 12px 24px;
-    background-color: transparent;
-    color: #666;
+    background: none;
     border: none;
-    border-bottom: 3px solid transparent;
+    padding: 10px 24px;
     font-size: 14px;
-    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: "Noto Sans JP", sans-serif;
-}
-
-.tab-button:hover {
-    color: #000;
+    color: #999;
 }
 
 .tab-button--active {
-    color: #000;
-    border-bottom-color: #000;
+    color: #333;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    background-color: #fff;
+    overflow: hidden;
 }
 
 .request-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.request-table thead {
-    background-color: #f5f5f5;
-}
-
-.request-table th {
-    padding: 12px;
-    text-align: center;
-    font-weight: 600;
-    border-bottom: 2px solid #ddd;
-    font-size: 13px;
-}
-
-.request-table td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    font-size: 13px;
-}
-
-.request-table tbody tr:hover {
-    background-color: #fafafa;
-}
-
-.modification-list {
-    list-style: none;
-    padding: 0;
     text-align: left;
 }
 
-.modification-list li {
+.request-table th,
+.request-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
     font-size: 13px;
-    color: #000;
-    padding: 2px 0;
+}
+
+.request-table th {
+    font-weight: normal;
+    color: #333;
+}
+
+.request-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.detail-link {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
 }
 
 .table-empty {
     text-align: center;
     color: #999;
-    padding: 40px 12px;
-}
-
-.page-actions {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-
-/* ============================================
-   レスポンシブ対応（PC 1400-1540px）
-   ============================================ */
-
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .page-title {
-        font-size: 26px;
-    }
-
-    .tabs {
-        gap: 10px;
-    }
-
-    .tab-button {
-        padding: 10px 20px;
-        font-size: 13px;
-    }
-
-    .request-table th,
-    .request-table td {
-        padding: 10px;
-        font-size: 12px;
-    }
-
-    .modification-list li {
-        font-size: 12px;
-    }
+    padding: 32px;
 }

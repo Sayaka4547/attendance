@@ -54,15 +54,3 @@
 .logout-btn:hover {
     opacity: 0.7;
 }
-
-/* ===========================
-   Footer (components/footer.blade.php)
-=========================== */
-.footer {
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 12px;
-    margin-top: auto;
-}

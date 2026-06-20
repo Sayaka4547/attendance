@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     // 管理者かどうかを判定するヘルパー
-    public function isAdmin()
+    public function isAdmin():bool
     {
         return $this->role === 'admin';
     }

@@ -6,13 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\CorrectionRequest;
 use App\Models\Attendance;
 use App\Models\BreakTime;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class AdminCorrectionRequestController extends Controller
 {
     // 申請一覧画面（管理者）
-    public function index()
+    public function index(Request $request)
     {
+        $date = $request->query('date', Carbon::today()->format('Y-m-d'));
+        $currentDate = Carbon::parse($date);
+        $status = $request->query('status', 'pending');
+
         // 承認待ち（全ユーザー分）
         $pendingRequests = CorrectionRequest::with(['user', 'attendance'])
             ->where('status', 'pending')
@@ -24,11 +30,14 @@ class AdminCorrectionRequestController extends Controller
             ->where('status', 'approved')
             ->latest()
             ->get();
+        
+        // 画面では承認待ちと承認済みをタブで切り替えて表示する想定
+        $requests = $status === 'approved' ? $approvedRequests : $pendingRequests;
 
-        return view('admin.correction-request.list', compact('pendingRequests', 'approvedRequests'));
+        return view('admin.correction-request.list', compact('requests', 'status', 'pendingRequests', 'approvedRequests'));
     }
 
-    // 修正申請承認画面
+    // 修正申請承認画面`
     public function approve($attendance_correct_request_id)
     {
         $correctionRequest = CorrectionRequest::with([
@@ -52,9 +61,9 @@ class AdminCorrectionRequestController extends Controller
 
         // 勤怠本体に申請内容を反映
         $attendance->update([
-            'clock_in_time'  => $attendance->correctionRequest->requested_clock_in_time,
+            'clock_in_time'  => $correctionRequest->requested_clock_in_time,
             'clock_out_time' => $correctionRequest->requested_clock_out_time,
-            'remarks'        => $correctionRequest->correctionRequest->requested_remarks,
+            'remarks'        => $correctionRequest->requested_remarks,
         ]);
 
         // 休憩レコードを申請内容で上書き

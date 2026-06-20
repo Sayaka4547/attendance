@@ -16,13 +16,16 @@ class AdminAttendanceController extends Controller
     {
         // クエリパラメータで日付を切り替え（デフォルトは今日）
         $date = $request->query('date', Carbon::today()->toDateString());
-        $currentDate = Carbon::parse($date);
+        $currentDate = Carbon::parse($date)->startOfDay();
+        $previousDate = $currentDate->copy()->subDay()->format('Y-m-d');
+        $nextDate = $currentDate->copy()->addDay()->format('Y-m-d');
+
 
         $attendances = Attendance::with('user')
             ->where('date', $currentDate->toDateString())
             ->get();
 
-        return view('admin.attendance.list', compact('attendances', 'currentDate'));
+        return view('admin.attendance.list', compact('attendances', 'currentDate', 'previousDate', 'nextDate'));
     }
 
     // 勤怠詳細画面（管理者）
