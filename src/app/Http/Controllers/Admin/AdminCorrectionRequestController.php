@@ -84,6 +84,6 @@ class AdminCorrectionRequestController extends Controller
             'approved_at' => now(),
         ]);
 
-        return redirect()->route('admin.correction-request.index');
+        return redirect()->route('correction-request.index');
     }
 }

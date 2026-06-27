@@ -12,11 +12,11 @@
 
     <div class="tab-wrapper">
         <button class="tab-btn {{ $status === 'pending' ? 'active' : '' }}"
-        onclick="location.href='{{ route('admin.correction-request.index', ['status' => 'pending']) }}'">
+        onclick="location.href='{{ route('correction-request.index', ['status' => 'pending']) }}'">
         承認待ち
       </button>
       <button class="tab-btn {{ $status === 'approved' ? 'active' : '' }}"
-        onclick="location.href='{{ route('admin.correction-request.index', ['status' => 'approved']) }}'">
+        onclick="location.href='{{ route('correction-request.index', ['status' => 'approved']) }}'">
         承認済み 
       </button>
     </div>

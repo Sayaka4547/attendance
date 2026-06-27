@@ -61,14 +61,18 @@
       </div>
     </div>
 
+    
+    <div class="form-footer">
     @if ($correctionRequest->status === 'pending')
-      <div class="form-footer">
-        <form action="{{ route('admin.correction-request.approve.update', $correctionRequest->id) }}" method="POST">
-          @csrf
-          <button type="submit" class="btn-submit">承認</button>
-        </form>
-      </div>
+    <form action="{{ route('admin.correction-request.approve.update', $correctionRequest->id) }}" method="POST">
+      @csrf
+      <button type="submit" class="btn-submit">承認</button>
+    </form>
+    @else
+    <button type="button" class="btn-approved" disabled>承認済み</button>
     @endif
+    </div>
+
   </div>
 
 @endsection

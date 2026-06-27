@@ -7,7 +7,7 @@
     <nav class="header-nav">
       <a href="{{ route('admin.attendance.index') }}" class="nav-item">勤怠一覧</a>
       <a href="{{ route('admin.staff.index') }}" class="nav-item">スタッフ一覧</a>
-      <a href="{{ route('admin.correction-request.index') }}" class="nav-item">申請一覧</a>
+      <a href="{{ route('correction-request.index') }}" class="nav-item">申請一覧</a>
       <form action="{{ route('admin.logout') }}" method="POST" class="logout-form">
         @csrf
         <button type="submit" class="logout-btn">ログアウト</button>

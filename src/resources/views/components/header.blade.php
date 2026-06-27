@@ -9,7 +9,7 @@
         @if (auth()->user()->role === 'admin')
           <a href="{{ route('admin.attendance.list') }}" class="nav-item">日次勤怠</a>
           <a href="{{ route('admin.staff.list') }}" class="nav-item">スタッフ一覧</a>
-          <a href="{{ route('admin.correction-request.index') }}" class="nav-item">申請承認</a>
+          <a href="{{ route('correction-request.index') }}" class="nav-item">申請承認</a>
         @else
           <a href="{{ route('attendance.index') }}" class="nav-item">勤怠</a>
           <a href="{{ route('attendance.list') }}" class="nav-item">勤怠一覧</a>

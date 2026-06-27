@@ -29,8 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance/detail/{id}', [AttendanceController::class, 'detail'])->name('attendance.detail');
     Route::post('/attendance/detail/{id}', [AttendanceController::class, 'requestCorrection'])->name('attendance.requestCorrection');
 
-    // 申請一覧画面
-    Route::get('/correction_request/list', [CorrectionRequestController::class, 'index'])->name('correction-request.index');
 });
 
 // ログアウト（一般ユーザー）
@@ -62,9 +60,6 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     // スタッフ一覧画面
     Route::get('/staff/list', [AdminStaffController::class, 'index'])->name('admin.staff.index');
 
-    // 申請一覧画面（管理者）
-    Route::get('/stamp_correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction-request.index');
-
     // 修正申請承認画面
     Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'approve'])->name('admin.correction-request.approve');
     Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminCorrectionRequestController::class, 'store'])->name('admin.correction-request.approve.update');
@@ -87,3 +82,16 @@ Route::post('/admin/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/admin/login');
 })->name('admin.logout')->middleware('admin');
+
+/*
+|--------------------------------------------------------------------------
+| 一般ユーザー＆管理者共通ルート（認証必須）
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/stamp_correction_request/list', function () {
+    $user = Auth::user();
+    if ($user && $user->role === 'admin') {
+        return app(\App\Http\Controllers\Admin\AdminCorrectionRequestController::class)->index(request());
+    }
+    return app(\App\Http\Controllers\CorrectionRequestController::class)->index(request());})->middleware('auth')->name('correction-request.index');
